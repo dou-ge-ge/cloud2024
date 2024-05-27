@@ -44,6 +44,7 @@ public class PayController {
 
     @GetMapping(value = "/pay/get/{id}")
     public ResultData<TPay> getById(@PathVariable("id") Integer id) {
+
         log.info(String.valueOf(id)+"*********");
         return ResultData.success(payService.getById(id));
     }
