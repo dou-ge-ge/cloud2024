@@ -11,8 +11,9 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 @RestController
 public class OrderController {
-    public static final String PaymentSrv_URL = "http://localhost:8001";
+//    public static final String PaymentSrv_URL = "http://localhost:8001";
 
+    public static final String PaymentSrv_URL = "http://cloud-payment-service";
     @Resource
     private RestTemplate restTemplate;
 
@@ -24,9 +25,12 @@ public class OrderController {
     @GetMapping(value = "/consumer/pay/get/{id}")
     public ResultData getPayInfo(@PathVariable("id") Integer id) {
         log.info(id+"!!!!!!!!!!!!!!!!!!!!!!!11");
-
-
         return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/" + id, ResultData.class, id);
+    }
+
+    @GetMapping(value = "/consumer/pay/get/info")
+    public String getInfoByConsul() {
+        return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/info", String.class);
     }
 
 }
