@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cloud-api-commons</artifactId>
+    <artifactId>cloud-consumer-feign-order80</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -17,7 +17,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atguigu.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -29,19 +41,21 @@
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -59,10 +73,33 @@
             <artifactId>mybatis-spring</artifactId>
             <version>3.0.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-hc5</artifactId>
+            <version>13.1</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -72,6 +109,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
