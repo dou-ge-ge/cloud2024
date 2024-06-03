@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 public class FeignConfig {
     @Bean
     public Retryer myRetryer() {
-        //return Retryer.NEVER_RETRY;
+        return Retryer.NEVER_RETRY;
 
-        return new Retryer.Default(100,1,3);
+//        return new Retryer.Default(100,1,3);
     }
 
     @Bean
