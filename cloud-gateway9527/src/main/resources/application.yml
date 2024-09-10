@@ -1,0 +1,41 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+    gateway:
+      routes: # 路由配置
+        - id: pay_route1 # 路由id，没有实际意义
+          uri: lb://cloud-payment-service #匹配后提供服务的路由地址  lb代表负载均衡
+          #uri: http://localhost:8001 #匹配后提供服务的路由地址
+          predicates:
+            # id:我们自定义的路由 ID，保持唯一
+            ## uri:目标服务地址
+            ## predicates:路由条件，Predicate接受一个输入参数返回一个布尔值
+            ##            该属性包含多种默认方法来将Predicate组合成其他复杂的逻辑(比:与，或，非)
+            - Path=/pay/gateway/info/** # 请求路径以/pay-gateway/get/ 开头
+            #- After=2024-05-08T08:15:58.463455300+08:00[Asia/Shanghai] # 请求时间在2024-05-08 08:15:58.463455300 Asia/Shanghai之后 可以访问
+            #            - Cookie=username,zzyy # 请求头Cookie要有username属性，并且值为zzyy
+            #            - Header=X-Request-Id, \d+  # 请求头要有X-Request-Id属性，并且值为整数的正则表达式
+            #            - Host=**.atguigu.com # 请求头要有Host属性，并且值为atguigu.com的正则表达式
+            #            - Query=green, \d+ # 请求参数要有green属性，并且值为整数的正则表达式
+            #            - RemoteAddr=10.113.96.1/24 # 请求地址在10.113.96.1/24网段 # 外部访问IP限制，最大跨度不超过32，目前是1~ 24  CIDR（无类别域间路由（Classless Inter-Domain Routing、CIDR））表示法
+            #- Method=GET,POST,PUT,DELETE # 请求方式限制
+            #            - Customize=diamond
+            #            - name: My # Fully自定义Predicate
+            #              args:
+            #                userType: diamond
+            # - My=diamond
+
+#        - id: pay_route2 # 路由id，没有实际意义
+#          uri: http://localhost:8001 #匹配后提供服务的路由地址
+#          predicates:
+#            - Path=/pay/gateway/info/**
+

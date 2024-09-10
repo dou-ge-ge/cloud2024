@@ -1,0 +1,87 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-consumer-feign-service
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 20000
+            readTimeout: 20000
+      httpclient:
+        hc5:
+          enabled: true
+          # 请求相应的Gzip压缩 减少通信过程的性能损耗
+      compression:
+        request:
+          enabled: true
+          min-request-size: 2048
+          mime-types: application/json,application/xml,application/octet-stream,text/xml
+        response:
+          enabled: true
+      circuitbreaker:
+        enabled: true
+        group:
+          enabled: true
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db2024?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+#logging:
+#  level:
+#    com:
+#      atguigu:
+#        cloud:
+#          apis:
+#            PayFeignApi: debug
+#resilience4j:
+#  circuitbreaker:
+#    configs:
+#      default:
+#        failureRateThreshold: 50
+#        slidingWindowType: COUNT_BASED
+#        slidingWindowSize: 6
+#        minimumNumberOfCalls: 6
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        waitDurationInOpenState: 15s
+#        permittedNumberOfCallsInHalfOpenState: 2
+#        recordExceptions:
+#          - java.lang.Exception
+#    instances:
+#      cloud-payment-service:
+#        baseConfig: default
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 10s
+  circuitbreaker:
+    configs:
+      default:
+        failureRateThreshold: 50
+        slowCallDurationThreshold: 2s
+        slowCallRateThreshold: 30
+        slidingWindowType: TIME_BASED
+        slidingWindowSize: 2
+        minimumNumberOfCalls: 2
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 5s
+        recordExceptions:
+          - java.lang.Exception
+    instances:
+      cloud-payment-service:
+        baseConfig: default
