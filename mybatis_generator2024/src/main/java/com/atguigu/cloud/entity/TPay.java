@@ -16,8 +16,8 @@ import lombok.EqualsAndHashCode;
  * 支付交易表
  * </p>
  *
- * @author kashim
- * @since 2024-05-27
+ * @author dou-ge-ge
+ * @since 2024-09-06
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -73,6 +73,9 @@ public class TPay extends Model<TPay> {
      */
     @TableField("update_time")
     private LocalDateTime updateTime;
+
+    @TableField("update_count")
+    private Integer updateCount;
 
 
     @Override

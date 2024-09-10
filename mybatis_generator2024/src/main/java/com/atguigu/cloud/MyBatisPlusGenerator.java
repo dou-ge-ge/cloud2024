@@ -16,7 +16,7 @@ import java.util.List;
 public class MyBatisPlusGenerator {
 
     //作者名
-    private static final String AUTHOR = "kashim";
+    private static final String AUTHOR = "dou-ge-ge";
     //表table的前缀，不加到生成的类名中
     private static final String PREFIX = "";
     //功能模块名称，生成的文件会存放到模块下

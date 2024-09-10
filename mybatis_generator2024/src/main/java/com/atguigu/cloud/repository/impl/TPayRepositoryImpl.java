@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
  * 支付交易表 服务实现类
  * </p>
  *
- * @author kashim
- * @since 2024-05-27
+ * @author dou-ge-ge
+ * @since 2024-09-06
  */
 @Service
 public class TPayRepositoryImpl extends ServiceImpl<TPayMapper, TPay> implements TPayRepository {

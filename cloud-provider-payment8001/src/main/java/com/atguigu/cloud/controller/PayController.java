@@ -46,11 +46,11 @@ public class PayController {
 
     @GetMapping(value = "/pay/get/{id}")
     public ResultData<TPay> getById(@PathVariable("id") Integer id) {
-        try {
-            TimeUnit.SECONDS.sleep(62);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            TimeUnit.SECONDS.sleep(62);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
 
         log.info(String.valueOf(id) + "*********");

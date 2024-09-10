@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
  * 支付交易表 前端控制器
  * </p>
  *
- * @author kashim
- * @since 2024-05-27
+ * @author dou-ge-ge
+ * @since 2024-09-06
  */
 @Controller
 @RequestMapping("/t-pay")
